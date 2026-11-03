@@ -1,0 +1,14 @@
+{
+  "name": "pelusas-fullstack",
+  "version": "1.0.0",
+  "description": "Juego de mesa Pelusas - Monorepo Fullstack",
+  "private": true,
+  "scripts": {
+    "start": "concurrently -k -n \"BACKEND,FRONTEND\" -c \"blue.bold,green.bold\" \"npm run backend\" \"npm run frontend\"",
+    "backend": "cd backend && mvn spring-boot:run",
+    "frontend": "cd frontend && npm run dev"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}
