@@ -1,0 +1,2969 @@
+/* ==========================================================================
+   PELUSAS — SISTEMA DE DISEÑO EDITORIAL DIGITAL PREMIUM
+   Tokens semánticos, diseño limpio, cálido, profesional y responsivo.
+   ========================================================================== */
+
+:root {
+  /* Paleta cromática oficial estilo Rubber Hose vintage (según imagen de guía del usuario) */
+  --color-bg: #85987f;             /* Fondo vintage verde salvia/oliva clásico */
+  --color-surface: #FAF4E8;        /* Cartulina/pergamino vintage cálido */
+  --color-surface-subtle: #F3EBD8; /* Pergamino secundario para zonas y tapetes */
+  --color-text: #1E1B18;           /* Tinta negra carbón vintage de cómic */
+  --color-text-secondary: #585149; /* Tinta secundaria suave */
+  --color-primary: #3D7454;        /* Verde Rubber Hose para Robar Carta */
+  --color-primary-hover: #315E44;  /* Hover verde acción */
+  --color-primary-active: #244733; /* Click activo */
+  --color-mint: #D8EAD9;           /* Verde tenue suave para badges y turno actual */
+  --color-coral: #BE5546;          /* Rojo terracota Rubber Hose para Plantarse / Bustos */
+  --color-coral-hover: #A64638;    /* Hover de rojo terracota */
+  --color-coral-light: #FCE8E4;    /* Fondo suave para avisos de busto */
+  --color-yellow: #ECC356;         /* Amarillo vintage para estrellas/trofeos */
+  --color-yellow-light: #FAF2DA;   /* Fondo tenue amarillo */
+  --color-lavender: #E0DAEC;       /* Lavanda vintage */
+  --color-border: #1E1B18;         /* Borde de tinta gruesa negra vintage */
+  --color-border-card: #181512;    /* Borde negro uniforme en todas las cartas */
+
+  /* Tipografías Rubber Hose */
+  --font-body: 'Nunito Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-heading: 'Boogaloo', 'Fredoka', 'Nunito', cursive, sans-serif;
+  --font-display: 'Boogaloo', 'Fredoka', cursive, sans-serif;
+  --font-hand: 'Patrick Hand', 'Caveat', cursive, sans-serif;
+
+  /* Radios de borde consistentes */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-card: 12px;
+  --radius-pill: 9999px;
+
+  /* Sombras y relieves estilo dibujo animado 1930s */
+  --shadow-sm: 0 2px 0 rgba(30, 27, 24, 0.9);
+  --shadow-md: 0 4px 0 rgba(30, 27, 24, 0.95);
+  --shadow-lg: 0 6px 0 rgba(30, 27, 24, 1);
+  --shadow-card: 0 4px 8px rgba(24, 21, 18, 0.22);
+  --shadow-card-hover: 0 8px 16px rgba(24, 21, 18, 0.3);
+
+  /* Transiciones */
+  --transition-fast: 160ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-bounce: 220ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Reset y base */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.4;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  height: 100vh;
+  max-height: 100vh;
+  overflow: hidden;
+}
+
+#root {
+  height: 100vh;
+  max-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* ==========================================================================
+   CONTENEDOR PRINCIPAL Y VIÑETA DE CINE 1930S (PANTALLA FIJA SIN SCROLL)
+   ========================================================================== */
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  max-height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  background-color: var(--color-bg);
+  /* Viñeta de televisión / proyector de cine antiguo estilo Rubber Hose */
+  box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.85), inset 0 0 32px rgba(0, 0, 0, 0.95);
+  position: relative;
+}
+
+.main-content {
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  max-width: 1380px;
+  margin: 0 auto;
+  padding: 0.35rem 1.25rem 0.55rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  overflow: hidden;
+}
+
+/* ==========================================================================
+   BARRA SUPERIOR (HEADER)
+   Fondo sutil, logo rubber hose centrado y botones con tinta gruesa
+   ========================================================================== */
+
+.app-header {
+  background-color: var(--color-surface);
+  border-bottom: 2.5px solid var(--color-border);
+  padding: 0.35rem 1.5rem;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 105;
+  box-shadow: 0 3px 0 rgba(30, 27, 24, 0.35);
+}
+
+.header-brand-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.brand-subtitle-badge {
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-text);
+  background: var(--color-surface);
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
+  border: 2px solid var(--color-border);
+  letter-spacing: 0.02em;
+  box-shadow: 0 2px 0 var(--color-border);
+}
+
+/* LOGO RUBBER HOSE DE PELUSAS: fondo transparente, proporcionado */
+.header-logo-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.clickable-header-logo {
+  cursor: pointer;
+  transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.clickable-header-logo:hover {
+  transform: scale(1.05) translateY(-1px);
+}
+
+.clickable-header-logo:active {
+  transform: scale(0.96) translateY(1px);
+}
+
+.pelusas-logo-frame {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1rem;
+}
+
+.pelusas-logo-img {
+  height: 54px;
+  width: auto;
+  max-width: 250px;
+  object-fit: contain;
+  display: block;
+  user-select: none;
+  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.28));
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.75rem;
+}
+
+.btn-header-action {
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 700;
+  padding: 0.42rem 1.05rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  border-radius: var(--radius-pill);
+  border: 2px solid var(--color-border);
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  box-shadow: 0 3px 0 var(--color-border);
+  position: relative;
+}
+
+.btn-header-action:hover:not(:disabled) {
+  background-color: #FFFFFF;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 0 var(--color-border);
+}
+
+/* Botón Nueva Partida con patitas de caricatura Rubber Hose */
+.btn-rubber-new-game {
+  background-color: var(--color-bg-mat) !important;
+  color: var(--color-text) !important;
+  border: 2.5px solid var(--color-border) !important;
+  border-radius: var(--radius-pill) !important;
+  box-shadow: 0 4px 0 var(--color-border) !important;
+  font-family: var(--font-display) !important;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.45rem 1.15rem;
+  transition: transform 0.1s ease, box-shadow 0.1s ease, background-color 0.15s ease;
+}
+
+.btn-rubber-new-game:hover:not(:disabled) {
+  background-color: #FFFFFF !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 var(--color-border) !important;
+}
+
+.btn-rubber-new-game:active:not(:disabled) {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 var(--color-border) !important;
+}
+
+/* ==========================================================================
+   CUADRO DE NOTIFICACIÓN DE ANUNCIOS (RUBBER HOSE - RECTÁNGULO CON BORDES CIRCULARES)
+   ========================================================================== */
+
+.rubberhose-banner-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+  max-width: 720px;
+  margin: 0.35rem auto 0.6rem;
+  z-index: 20;
+}
+
+.notification-banner-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 0.55rem 1.4rem;
+  background-color: #FAF2DF !important;
+  border: 2.5px solid var(--color-border) !important;
+  border-radius: 20px !important; /* Rectángulo normal con bordes circulares */
+  box-shadow: 0 4px 0 var(--color-border) !important;
+  box-sizing: border-box;
+  transition: transform var(--transition-fast), background-color var(--transition-fast);
+}
+
+.notification-banner-box.banner-bust {
+  background-color: var(--color-coral-light) !important;
+}
+
+.notification-banner-box.banner-success {
+  background-color: #EDF7F0 !important;
+}
+
+.notification-banner-box .banner-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  flex: 1;
+}
+
+.notification-banner-box .banner-text {
+  font-family: var(--font-hand), 'Patrick Hand', cursive !important;
+  font-size: 1.25rem !important;
+  font-weight: 700;
+  color: var(--color-text) !important;
+  letter-spacing: 0.35px;
+  text-align: center;
+  line-height: 1.25;
+}
+
+/* ==========================================================================
+   SISTEMA DE BOTONES COHERENTE
+   ========================================================================== */
+
+.btn {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: background-color var(--transition-fast), color var(--transition-fast),
+              border-color var(--transition-fast), transform var(--transition-fast),
+              box-shadow var(--transition-fast);
+  text-decoration: none;
+  user-select: none;
+  line-height: 1.2;
+}
+
+.btn:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+/* Botón primario: Acción principal (#197A58) */
+.btn-primary {
+  background-color: var(--color-primary);
+  color: #FFFFFF;
+  border-color: var(--color-primary);
+  box-shadow: 0 2px 6px rgba(25, 122, 88, 0.2);
+}
+
+.btn-primary:hover:not(:disabled) {
+  background-color: var(--color-primary-hover);
+  border-color: var(--color-primary-hover);
+  box-shadow: 0 4px 10px rgba(25, 122, 88, 0.3);
+}
+
+/* Botón secundario: Neutral editorial */
+.btn-secondary {
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  border-color: var(--color-border);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background-color: var(--color-surface-subtle);
+  border-color: #D3C5B2;
+}
+
+/* Botones de acción principales de mesa */
+.btn-draw-action {
+  padding: 0.5rem 1.15rem;
+  font-size: 0.92rem;
+}
+
+.btn-stop-action {
+  padding: 0.5rem 1.15rem;
+  font-size: 0.92rem;
+  border-color: var(--color-border);
+}
+
+.btn-stop-action:hover:not(:disabled) {
+  background-color: #FFF2EF;
+  border-color: var(--color-coral);
+  color: #D94834;
+}
+
+.btn-bank-action {
+  padding: 0.5rem 1.05rem;
+  font-size: 0.9rem;
+  background-color: var(--color-mint);
+  color: var(--color-primary);
+  border-color: #BBE7D2;
+}
+
+.btn-bank-action:hover:not(:disabled) {
+  background-color: #CBEFDD;
+  color: var(--color-primary-hover);
+}
+
+.btn-steal-action {
+  background-color: #29213A;
+  color: #FFFFFF;
+  padding: 0.4rem 0.9rem;
+  font-size: 0.85rem;
+  border-radius: var(--radius-pill);
+}
+
+.btn-steal-action:hover {
+  background-color: #3F3359;
+}
+
+.btn-manual-steal {
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 8;
+  font-family: var(--font-heading);
+  font-size: 0.7rem;
+  font-weight: 800;
+  background-color: var(--color-coral);
+  color: #FFFFFF;
+  border: 1.5px solid #FFFFFF;
+  border-radius: var(--radius-pill);
+  padding: 2px 7px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  white-space: nowrap;
+  transition: transform var(--transition-fast), background-color var(--transition-fast);
+}
+
+.btn-manual-steal:hover {
+  background-color: var(--color-coral-hover);
+  transform: translateX(-50%) scale(1.06);
+}
+
+/* ==========================================================================
+   BANNER DE ACCIÓN / SUCESO DEL TURNO
+   Toast claro, legible y semántico de altura fija
+   ========================================================================== */
+
+.action-banner {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 0.4rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-shrink: 0;
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-fast);
+}
+
+.banner-content {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-size: 0.86rem;
+  font-weight: 600;
+}
+
+.banner-icon-bust {
+  color: var(--color-coral);
+  flex-shrink: 0;
+}
+
+.banner-icon-success {
+  color: var(--color-primary);
+  flex-shrink: 0;
+}
+
+.banner-icon-info {
+  color: #3B82F6;
+  flex-shrink: 0;
+}
+
+.banner-bust {
+  background-color: var(--color-coral-light);
+  border-color: #FFC0B6;
+  color: #9E2614;
+}
+
+.banner-success {
+  background-color: var(--color-mint);
+  border-color: #BEEBD6;
+  color: #0E563C;
+}
+
+.banner-info {
+  background-color: #EFF6FF;
+  border-color: #BFDBFE;
+  color: #1E40AF;
+}
+
+.btn-podium-trigger {
+  padding: 0.3rem 0.75rem;
+  font-size: 0.78rem;
+  flex-shrink: 0;
+}
+
+/* ==========================================================================
+   ÁREA CENTRAL DE LA MESA (TABLE CENTER)
+   Altura fija y compacta para evitar desplazamiento vertical de la pantalla
+   ========================================================================== */
+
+.table-center-container {
+  width: 100%;
+  flex-shrink: 0;
+}
+
+.game-table-card {
+  background-color: var(--color-surface);
+  border: 2.5px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 5px 0 var(--color-border);
+  padding: 0.55rem 1.25rem;
+  display: grid;
+  grid-template-columns: 160px 1fr 160px;
+  gap: 1rem;
+  align-items: center;
+}
+
+/* 1. Zona del mazo */
+.deck-zone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.25rem;
+}
+
+.zone-header-label {
+  font-family: var(--font-display);
+  font-size: 0.88rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-text);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.deck-stack-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2px;
+}
+
+.deck-rubberhose-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  outline: none;
+  user-select: none;
+  transition: transform var(--transition-bounce);
+}
+
+.deck-rubberhose-btn.deck-active:hover {
+  transform: translateY(-3px) scale(1.02);
+}
+
+.deck-rubberhose-btn.deck-disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
+.rubberhose-deck-img {
+  height: 120px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.25));
+}
+
+.rubber-counter-badge {
+  margin-top: 3px;
+  font-family: var(--font-display);
+  font-size: 0.82rem;
+  font-weight: 700;
+  background-color: #FAF3E6;
+  color: var(--color-text);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 2px 10px;
+  box-shadow: 0 2px 0 var(--color-border);
+  letter-spacing: 0.02em;
+}
+
+.zone-hint-text {
+  font-size: 0.72rem;
+  font-family: var(--font-display);
+  color: var(--color-text-secondary);
+}
+
+/* 2. Área Central (Acción y Mesa Rubber Hose) */
+.play-area-zone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.4rem;
+}
+
+.turn-indicator-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background-color: var(--color-surface-subtle);
+  border: 2px solid var(--color-border);
+  padding: 3px 14px;
+  border-radius: var(--radius-pill);
+  font-size: 0.92rem;
+  font-family: var(--font-display);
+  box-shadow: 0 2px 0 var(--color-border);
+}
+
+.turn-label {
+  color: var(--color-text-secondary);
+  font-weight: 600;
+}
+
+.turn-player-name {
+  color: var(--color-primary);
+  font-family: var(--font-display);
+  font-weight: 800;
+}
+
+.active-card-stage {
+  height: 125px;
+  min-height: 125px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.drawn-card-wrapper {
+  display: inline-flex;
+  transition: transform var(--transition-bounce);
+}
+
+.rubberhose-table-stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+}
+
+.rubberhose-table-character-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rubberhose-table-character-img {
+  height: 75px;
+  width: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.22));
+}
+
+.mesa-pill-label {
+  background-color: #F1E5CD;
+  color: var(--color-text);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  padding: 2px 14px;
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-top: 4px;
+  box-shadow: 0 2px 0 var(--color-border);
+}
+
+/* Botones Rubber Hose con manitos de caricatura */
+.rubberhose-actions-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.85rem;
+  flex-wrap: wrap;
+}
+
+.btn-rubber-draw {
+  background-color: var(--color-primary);
+  color: #FFFFFF;
+  border: 2.5px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  box-shadow: 0 4px 0 var(--color-border);
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  padding: 0.42rem 1.35rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  letter-spacing: 0.02em;
+}
+
+.btn-rubber-draw:hover:not(:disabled) {
+  background-color: var(--color-primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 var(--color-border);
+}
+
+.btn-rubber-stop,
+.btn-rubber-stop:focus,
+.btn-rubber-stop:active {
+  background-color: var(--color-coral) !important;
+  color: #FFFFFF !important;
+  border: 2.5px solid var(--color-border) !important;
+  border-radius: var(--radius-pill) !important;
+  box-shadow: 0 4px 0 var(--color-border) !important;
+  font-family: var(--font-display) !important;
+  font-size: 1.15rem;
+  font-weight: 700;
+  padding: 0.42rem 1.35rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  letter-spacing: 0.02em;
+}
+
+.btn-rubber-stop:hover:not(:disabled) {
+  background-color: var(--color-coral-hover) !important;
+  color: #FFFFFF !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 var(--color-border) !important;
+}
+
+.btn-rubber-stop span,
+.btn-rubber-stop:hover:not(:disabled) span {
+  color: #FFFFFF !important;
+}
+
+.btn-rubber-bank {
+  background-color: #4A6FA5;
+  color: #FFFFFF;
+  border: 2.5px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  box-shadow: 0 4px 0 var(--color-border);
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 0.42rem 1.2rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.btn-rubber-glove {
+  height: 24px;
+  width: auto;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+.glove-right-flipped {
+  transform: scaleX(-1);
+}
+
+/* 3. Zona de Descarte con personaje de Bote de Basura */
+.discard-zone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.25rem;
+}
+
+.discard-rubber-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  padding: 2px;
+}
+
+.discard-rubber-character-img {
+  height: 120px;
+  width: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.22));
+}
+
+/* ==========================================================================
+   CARTAS ORIGINALES — REQUISITO OBLIGATORIO: BORDE NEGRO 2px solid #171717
+   Preserva proporciones y contenido de imagen original intactos.
+   ========================================================================== */
+
+.pelusa-card {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-card);
+  border: 2px solid var(--color-border-card);
+  background-color: #FFFFFF;
+  box-sizing: border-box;
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  cursor: default;
+  user-select: none;
+  flex-shrink: 0;
+}
+
+.pelusa-card[role="button"],
+.pelusa-card[tabindex="0"] {
+  cursor: pointer;
+}
+
+.pelusa-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-card-hover);
+}
+
+/* Dimensiones proporcionales ajustadas para pantalla fija sin scroll (~150:224) */
+.pelusa-card-md {
+  width: 72px;
+  height: 108px;
+}
+
+.player-mat-card.mat-compact .pelusa-card-md {
+  width: 60px;
+  height: 90px;
+}
+
+.pelusa-card-lg {
+  width: 88px;
+  height: 130px;
+}
+
+.pelusa-card-compact {
+  width: 52px;
+  height: 78px;
+}
+
+/* Imagen oficial original: ocupa el 100% sin recortar ni deformar */
+.pelusa-official-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  display: block;
+  border-radius: 9px;
+  pointer-events: none;
+}
+
+/* Badge de cantidad para cartas apiladas */
+.card-count-badge {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  background-color: #171717;
+  color: #FFFFFF;
+  font-family: var(--font-heading);
+  font-size: 0.68rem;
+  font-weight: 800;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 4px;
+  border-radius: var(--radius-pill);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  z-index: 5;
+  border: 1px solid #FFFFFF;
+}
+
+/* Fallback solo si la imagen oficial falla */
+.card-fallback {
+  background: var(--color-surface-subtle);
+  padding: 0.5rem;
+}
+
+/* ==========================================================================
+   TABLEROS DE JUGADORES (PLAYER MATS)
+   Ajustados a la altura disponible de la pantalla sin crecer ni hacer scroll
+   ========================================================================== */
+
+.players-grid-section {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  overflow: hidden;
+}
+
+.section-header-row {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-shrink: 0;
+}
+
+.section-header-icon {
+  color: var(--color-primary);
+}
+
+.section-title {
+  font-family: var(--font-heading);
+  font-size: 0.98rem;
+  font-weight: 800;
+  color: var(--color-text);
+}
+
+.players-grid {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-auto-rows: minmax(0, 1fr);
+  gap: 0.65rem;
+  overflow: hidden;
+}
+
+.players-grid.players-count-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: minmax(0, 210px);
+}
+
+.players-grid.players-count-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-rows: minmax(0, 210px);
+}
+
+.players-grid.players-count-4 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+}
+
+.players-grid.players-count-5,
+.players-grid.players-count-6 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+}
+
+.player-mat-card {
+  background-color: var(--color-surface);
+  border: 2.5px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 5px 0 var(--color-border);
+  padding: 0.55rem 0.85rem;
+  height: 100%;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  overflow: hidden;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.player-mat-card.mat-compact {
+  padding: 0.4rem 0.65rem;
+  gap: 0.25rem;
+}
+
+/* Jugador activo: borde de tinta Rubber Hose y realce */
+.player-mat-card.active-mat {
+  border-color: #1E1B18;
+  box-shadow: 0 5px 0 #1E1B18, 0 0 0 2.5px #3D7454;
+}
+
+.player-mat-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.player-identity {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.player-avatar-rubber {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-pill);
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+  box-shadow: 0 2px 0 var(--color-border);
+}
+
+.player-mat-name {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.active-turn-tag.rubber-active-turn {
+  background-color: var(--color-mint);
+  color: #1E5536;
+  border: 2px solid var(--color-border);
+  font-family: var(--font-display);
+  font-size: 0.82rem;
+  font-weight: 700;
+  padding: 2px 10px;
+  border-radius: var(--radius-pill);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  box-shadow: 0 2px 0 var(--color-border);
+}
+
+.inactive-player-tag {
+  font-size: 0.76rem;
+  font-family: var(--font-display);
+  color: var(--color-text-secondary);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+/* Cuerpo del tapete del jugador */
+.mat-body-content {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 104px;
+  gap: 0.65rem;
+  align-items: stretch;
+}
+
+.player-mat-card.mat-compact .mat-body-content {
+  grid-template-columns: minmax(0, 1fr) 92px;
+  gap: 0.5rem;
+}
+
+.mat-cards-area {
+  min-height: 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.mat-risk-label {
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-text-secondary);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  flex-shrink: 0;
+}
+
+.risk-icon {
+  color: #BE5546;
+}
+
+/* Zona de cartas en riesgo delante: una sola fila fija */
+.cards-in-front-zone {
+  flex: 1;
+  min-height: 0;
+  height: 100%;
+  background-color: var(--color-surface-subtle);
+  border: 2px dashed #C8BC9F;
+  border-radius: var(--radius-md);
+  padding: 0.35rem 0.55rem;
+  display: flex;
+  align-items: center;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.empty-rubberhose {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25rem;
+}
+
+.empty-zone-simple {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  min-height: 80px;
+}
+
+.empty-zone-text {
+  font-family: var(--font-hand), 'Patrick Hand', cursive !important;
+  font-size: 1.45rem !important;
+  font-weight: 700;
+  color: rgba(30, 27, 24, 0.45) !important;
+  letter-spacing: 0.5px;
+  text-align: center;
+}
+
+.cards-fan-layout {
+  display: flex;
+  gap: 0.45rem;
+  flex-wrap: nowrap;
+  align-items: center;
+  height: 100%;
+}
+
+.cards-fan-layout.fan-crowded {
+  gap: 0;
+}
+
+.cards-fan-layout.fan-crowded .card-steal-wrapper:not(:first-child) {
+  margin-left: -14px;
+}
+
+.cards-fan-layout.fan-very-crowded .card-steal-wrapper:not(:first-child) {
+  margin-left: -24px;
+}
+
+.card-steal-wrapper {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: z-index 0s, transform var(--transition-fast);
+}
+
+.card-steal-wrapper:hover {
+  z-index: 10;
+}
+
+.empty-zone-text {
+  font-size: 1.05rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--color-text);
+  width: 100%;
+  text-align: center;
+  margin-top: 2px;
+}
+
+/* Tarjeta de puntuación guardada con Trofeo Rubber Hose */
+.mat-points-area {
+  display: flex;
+  align-items: stretch;
+  min-height: 0;
+  height: 100%;
+}
+
+.points-rubber-card {
+  width: 100%;
+  height: 100%;
+  background-color: #F5EDD8;
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-md);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 0.35rem;
+  text-align: center;
+  box-shadow: 0 3px 0 var(--color-border);
+  box-sizing: border-box;
+  gap: 0.15rem;
+}
+
+.points-rubber-trophy-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: 0;
+}
+
+.rubber-trophy-img {
+  height: 38px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.player-mat-card.mat-compact .rubber-trophy-img {
+  height: 32px;
+}
+
+.points-score-label {
+  font-size: 0.74rem;
+  font-family: var(--font-display);
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--color-text);
+  letter-spacing: 0.05em;
+  line-height: 1.1;
+  text-align: center;
+  width: 100%;
+  margin: 0;
+}
+
+.points-score-value {
+  font-family: var(--font-display);
+  font-size: 1.55rem;
+  font-weight: 900;
+  color: var(--color-text);
+  line-height: 1;
+  margin: 0;
+  text-align: center;
+  width: 100%;
+}
+
+.player-mat-card.mat-compact .points-score-value {
+  font-size: 1.35rem;
+}
+
+.banked-cards-tag {
+  font-size: 0.72rem;
+  font-family: var(--font-body);
+  font-weight: 700;
+  color: var(--color-text-secondary);
+  margin: 0.2rem auto 0;
+  padding-top: 0.25rem;
+  border-top: 1.5px dashed #C8BC9F;
+  width: 88%;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ==========================================================================
+   MODALES (ESTRUCTURA EDITORIAL LIMPIA)
+   ========================================================================== */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(24, 21, 18, 0.55);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+  z-index: 200;
+  overflow-y: auto;
+}
+
+.modal-card {
+  background-color: var(--color-surface);
+  border: 2.5px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 8px 0 var(--color-border);
+  width: 100%;
+  max-width: 560px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.modal-card-wide {
+  max-width: 760px;
+}
+
+.modal-header {
+  padding: 1.15rem 1.5rem;
+  border-bottom: 2px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.modal-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.modal-title-icon {
+  color: var(--color-primary);
+}
+
+.modal-title {
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--color-text);
+}
+
+.btn-modal-close {
+  background: transparent;
+  border: 2px solid transparent;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color var(--transition-fast), background-color var(--transition-fast);
+}
+
+.btn-modal-close:hover {
+  color: var(--color-text);
+  background-color: var(--color-surface-subtle);
+  border-color: var(--color-border);
+}
+
+.modal-footer {
+  padding: 1rem 1.5rem;
+  border-top: 2px solid var(--color-border);
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  background-color: var(--color-surface-subtle);
+}
+
+/* Formulario de nueva partida */
+.modal-form {
+  padding: 1.5rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.form-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.form-label {
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.presets-pill-group {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.btn-preset-pill {
+  font-size: 0.95rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  padding: 0.35rem 0.85rem;
+  background-color: var(--color-surface-subtle);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  color: var(--color-text);
+  cursor: pointer;
+  box-shadow: 0 2px 0 var(--color-border);
+  transition: transform var(--transition-fast), background-color var(--transition-fast);
+}
+
+.btn-preset-pill:hover {
+  background-color: #EAE0D0;
+  transform: translateY(-1px);
+}
+
+.btn-preset-pill.active-preset-pill {
+  background-color: var(--color-mint);
+  border-color: var(--color-border);
+  color: #1E5536;
+  box-shadow: 0 3px 0 var(--color-border);
+}
+
+/* ==========================================================================
+   CUADRO LLAMATIVO Y GRANDE: "BIENVENIDO A PELUSAS" (CONFIGURACIÓN)
+   ========================================================================== */
+
+.modal-overlay-welcome {
+  background-color: var(--color-bg);
+  box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.85), inset 0 0 32px rgba(0, 0, 0, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  z-index: 200;
+  overflow-y: auto;
+}
+
+.welcome-setup-card {
+  max-width: 680px;
+  width: 100%;
+  max-height: calc(100vh - 2rem);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 3px solid var(--color-border);
+  border-radius: 20px;
+  box-shadow: 0 8px 0 var(--color-border);
+  background-color: var(--color-surface);
+}
+
+.welcome-modal-header {
+  background: linear-gradient(135deg, #3D7454 0%, #29533B 100%);
+  border-bottom: 2.5px solid var(--color-border);
+  padding: 0.85rem 1.4rem;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+
+.welcome-header-content {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.welcome-icon-badge {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.welcome-sparkle-icon {
+  color: var(--color-yellow);
+}
+
+.welcome-title-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.welcome-main-title {
+  color: #FFFFFF;
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  line-height: 1.15;
+}
+
+.welcome-subtitle {
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 0.82rem;
+  font-weight: 500;
+}
+
+.welcome-modal-header .btn-modal-close {
+  color: rgba(255, 255, 255, 0.85);
+  border-radius: var(--radius-sm);
+  padding: 4px;
+}
+
+.welcome-modal-header .btn-modal-close:hover {
+  color: #FFFFFF;
+  background-color: rgba(255, 255, 255, 0.18);
+}
+
+.welcome-modal-form {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+}
+
+.welcome-modal-scroll-area {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 0.95rem 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.welcome-section-label {
+  font-size: 0.9rem;
+  font-family: var(--font-heading);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--color-text);
+  margin-bottom: 0.15rem;
+}
+
+.welcome-label-icon {
+  color: var(--color-primary);
+}
+
+.welcome-presets-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.5rem;
+  margin-top: 0.15rem;
+}
+
+.welcome-preset-btn {
+  border-radius: 12px;
+  padding: 0.45rem 0.35rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.1rem;
+  background-color: var(--color-surface-subtle);
+  border: 2px solid var(--color-border);
+  box-shadow: 0 2px 0 var(--color-border);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.welcome-preset-btn:hover {
+  background-color: #EDE4D5;
+  transform: translateY(-2px);
+}
+
+.welcome-preset-btn.active-preset-pill {
+  background-color: var(--color-mint);
+  border-color: #1E5536;
+  color: #1E5536;
+  box-shadow: 0 3px 0 var(--color-border);
+  transform: translateY(-1px);
+}
+
+.preset-count-number {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.preset-count-text {
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.welcome-players-grid {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 0.55rem;
+  margin-top: 0.15rem;
+}
+
+.welcome-player-input-card {
+  background-color: var(--color-surface-subtle);
+  border: 1.5px solid var(--color-border);
+  border-radius: 10px;
+  padding: 0.25rem 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast), background-color var(--transition-fast);
+}
+
+.welcome-player-input-card:focus-within {
+  border-color: var(--color-primary);
+  background-color: #FFFFFF;
+  box-shadow: 0 0 0 2.5px rgba(61, 116, 84, 0.2);
+}
+
+.player-number-badge {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-pill);
+  background-color: var(--color-primary);
+  color: #FFFFFF;
+  font-family: var(--font-heading);
+  font-size: 0.82rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.player-modal-avatar-wrap {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.welcome-player-input {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  background: transparent;
+  padding: 0.35rem 0.3rem;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.92rem;
+  color: var(--color-text);
+  outline: none;
+}
+
+.welcome-player-input:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.btn-remove-player {
+  background: transparent;
+  border: none;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+  flex-shrink: 0;
+}
+
+.btn-remove-player:hover {
+  color: var(--color-coral);
+  background-color: var(--color-coral-light);
+}
+
+.btn-add-player {
+  padding: 0.25rem 0.65rem;
+  font-size: 0.78rem;
+  gap: 0.3rem;
+  border-radius: var(--radius-pill);
+}
+
+.welcome-modal-footer {
+  padding: 0.75rem 1.4rem;
+  border-top: 2px solid var(--color-border);
+  background-color: var(--color-surface-subtle);
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+
+.btn-welcome-start {
+  padding: 0.6rem 1.6rem;
+  font-size: 0.95rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  border-radius: 12px;
+}
+
+.btn-welcome-cancel {
+  padding: 0.6rem 1.2rem;
+  font-size: 0.9rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  border-radius: 12px;
+}
+
+/* ==========================================================================
+   MENÚ DESPLEGABLE EN EL JUEGO (REGLAS, HISTORIAL Y MODO SUSTENTACIÓN)
+   ========================================================================== */
+
+.header-dropdown-container {
+  position: relative;
+}
+
+.btn-dropdown-trigger {
+  position: relative;
+}
+
+.btn-dropdown-trigger.dropdown-active {
+  background-color: var(--color-surface-subtle);
+  border-color: var(--color-primary);
+}
+
+.dropdown-chevron {
+  transition: transform var(--transition-fast);
+}
+
+.dropdown-chevron.chevron-open {
+  transform: rotate(180deg);
+}
+
+.simulation-active-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-pill);
+  background-color: var(--color-primary);
+  display: inline-block;
+}
+
+.header-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  width: 340px;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  padding: 0.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  z-index: 130;
+}
+
+.dropdown-menu-item {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 0.65rem 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color var(--transition-fast);
+}
+
+.dropdown-menu-item:hover {
+  background-color: var(--color-surface-subtle);
+}
+
+.dropdown-item-icon {
+  flex-shrink: 0;
+  color: var(--color-primary);
+}
+
+.dropdown-item-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.dropdown-item-title {
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: var(--color-text);
+}
+
+.dropdown-item-desc {
+  font-size: 0.76rem;
+  color: var(--color-text-secondary);
+}
+
+.dropdown-divider {
+  height: 1px;
+  background-color: var(--color-border);
+  margin: 0.35rem 0.25rem;
+}
+
+.dropdown-simulation-section {
+  background-color: var(--color-surface-subtle);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 0.75rem 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.dropdown-sim-select {
+  font-size: 0.84rem;
+  padding: 0.45rem 0.65rem;
+}
+
+.btn-apply-simulation {
+  margin-top: 0.35rem;
+  padding: 0.5rem 0.85rem;
+  font-size: 0.84rem;
+  width: 100%;
+}
+
+.btn-add-player {
+  font-size: 0.78rem;
+  padding: 0.3rem 0.65rem;
+}
+
+.player-inputs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.player-input-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.form-input {
+  flex: 1;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  padding: 0.65rem 0.85rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background-color: #FFFFFF;
+  color: var(--color-text);
+  outline: none;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.form-input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(25, 122, 88, 0.15);
+}
+
+.btn-remove-player {
+  background: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  color: var(--color-coral);
+  padding: 0.6rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-remove-player:hover {
+  background-color: var(--color-coral-light);
+  border-color: var(--color-coral);
+}
+
+.simulation-group-box {
+  background-color: var(--color-surface-subtle);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+}
+
+.simulation-checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.form-checkbox {
+  width: 17px;
+  height: 17px;
+  cursor: pointer;
+  accent-color: var(--color-primary);
+}
+
+.simulation-checkbox-label {
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.cap-icon {
+  color: var(--color-primary);
+}
+
+.simulation-select-wrap {
+  margin-top: 0.65rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.simulation-hint-text {
+  font-size: 0.78rem;
+  color: var(--color-text-secondary);
+}
+
+.form-select {
+  cursor: pointer;
+}
+
+/* Modal de reglamento */
+.rules-content-body {
+  padding: 1.5rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  font-size: 0.92rem;
+  color: var(--color-text);
+}
+
+.rule-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.rule-section-header {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.rule-section-header h3 {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--color-text);
+}
+
+.rule-icon-target { color: var(--color-primary); }
+.rule-icon-deck { color: #8B5CF6; }
+.rule-icon-turn { color: #0284C7; }
+.rule-icon-alert { color: var(--color-coral); }
+.rule-icon-trophy { color: #D97706; }
+
+.rule-box-subtle {
+  background-color: var(--color-surface-subtle);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 0.85rem 1rem;
+}
+
+.rule-box-alert {
+  background-color: var(--color-coral-light);
+  border: 1px solid #FFC0B6;
+  border-radius: var(--radius-md);
+  padding: 0.85rem 1rem;
+}
+
+.rule-list, .rule-ordered-list {
+  padding-left: 1.25rem;
+  line-height: 1.6;
+}
+
+/* Modal de histórico */
+.history-table-container {
+  overflow-x: auto;
+  padding: 1rem 1.5rem;
+}
+
+.history-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+  text-align: left;
+}
+
+.history-table th {
+  padding: 0.65rem 0.85rem;
+  background-color: var(--color-surface-subtle);
+  color: var(--color-text-secondary);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.history-table td {
+  padding: 0.85rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.history-date-cell {
+  color: var(--color-text-secondary);
+  font-size: 0.82rem;
+  white-space: nowrap;
+}
+
+.history-winner-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+.winner-icon {
+  color: #D97706;
+}
+
+.history-players-list {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  font-size: 0.82rem;
+}
+
+.history-player-score.is-winner {
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+.history-summary-cell {
+  font-size: 0.82rem;
+  color: var(--color-text-secondary);
+  max-width: 220px;
+}
+
+.modal-loading-state,
+.modal-empty-state {
+  padding: 3rem 1.5rem;
+  text-align: center;
+  color: var(--color-text-secondary);
+}
+
+.empty-state-icon {
+  margin: 0 auto 0.65rem;
+  color: #C0B4A0;
+}
+
+/* Modal de victoria */
+.victory-card {
+  max-width: 480px;
+  text-align: center;
+  padding: 2rem 1.5rem;
+}
+
+.victory-trophy-wrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0.75rem;
+}
+
+.victory-rubber-trophy-circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.victory-rubber-trophy-img {
+  height: 84px;
+  width: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+}
+
+.victory-icon-circle {
+  width: 72px;
+  height: 72px;
+  border-radius: var(--radius-pill);
+  background-color: var(--color-yellow-light);
+  border: 2px solid var(--color-yellow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.trophy-gold-icon {
+  color: #D97706;
+}
+
+.victory-title {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.victory-winner-banner {
+  background-color: var(--color-mint);
+  border: 1px solid #B8E4CE;
+  border-radius: var(--radius-md);
+  padding: 0.85rem;
+  margin: 1rem 0 1.25rem;
+}
+
+.winner-label-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.crown-icon {
+  color: #D97706;
+}
+
+.winner-names-highlight {
+  font-family: var(--font-display);
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-top: 2px;
+}
+
+.victory-podium-section {
+  text-align: left;
+  margin-bottom: 1.5rem;
+}
+
+.podium-section-title {
+  font-family: var(--font-heading);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.podium-player-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.podium-row {
+  background-color: var(--color-surface-subtle);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 0.65rem 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.podium-winner-row {
+  background-color: var(--color-mint);
+  border-color: #B8E4CE;
+}
+
+.podium-player-info {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.podium-rank-badge {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 0.8rem;
+  color: var(--color-text-secondary);
+}
+
+.podium-player-name {
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.winner-tag {
+  background-color: var(--color-primary);
+  color: #FFFFFF;
+  font-size: 0.68rem;
+  font-weight: 800;
+  padding: 2px 7px;
+  border-radius: var(--radius-pill);
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.podium-player-stats {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  font-size: 0.82rem;
+}
+
+.podium-cards-count {
+  color: var(--color-text-secondary);
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.podium-score {
+  font-size: 0.95rem;
+}
+
+.victory-footer {
+  justify-content: center;
+  background: transparent;
+  border-top: none;
+  padding: 0;
+}
+
+/* ==========================================================================
+   ANIMACIONES SUAVES Y DE REVELACIÓN DE CARTA REPETIDA (BUSTO)
+   ========================================================================== */
+
+@keyframes shakeBust {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-5px); }
+  40%, 80% { transform: translateX(5px); }
+}
+
+@keyframes dealCardPop {
+  0% {
+    opacity: 0;
+    transform: translateX(-28px) scale(0.82) rotate(-6deg);
+  }
+  70% {
+    opacity: 1;
+    transform: translateX(3px) scale(1.04) rotate(1deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) scale(1) rotate(0deg);
+  }
+}
+
+@keyframes bustCardImpact {
+  0% {
+    opacity: 0;
+    transform: scale(0.6) rotate(-12deg);
+  }
+  25% {
+    opacity: 1;
+    transform: scale(1.14) rotate(5deg);
+  }
+  40% {
+    transform: scale(1.06) translateX(-8px) rotate(-4deg);
+  }
+  55% {
+    transform: scale(1.06) translateX(8px) rotate(4deg);
+  }
+  70% {
+    transform: scale(1.04) translateX(-6px) rotate(-3deg);
+  }
+  85% {
+    transform: scale(1.02) translateX(5px) rotate(2deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateX(0) rotate(0deg);
+  }
+}
+
+@keyframes bustStampSlam {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(2.2) rotate(-18deg);
+  }
+  60% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(0.92) rotate(-10deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1) rotate(-12deg);
+  }
+}
+
+@keyframes bustDangerPulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(255, 128, 110, 0.55), 0 8px 22px rgba(217, 72, 52, 0.32);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(255, 128, 110, 0), 0 10px 28px rgba(217, 72, 52, 0.45);
+  }
+}
+
+@keyframes discardReceivePulse {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+  }
+  25% {
+    transform: scale(1.08) rotate(-3deg);
+    border-color: var(--color-coral);
+    background-color: var(--color-coral-light);
+  }
+  50% {
+    transform: scale(1.08) rotate(3deg);
+    border-color: var(--color-coral);
+    background-color: var(--color-coral-light);
+  }
+  75% {
+    transform: scale(1.03) rotate(-1deg);
+  }
+}
+
+.shake-bust {
+  animation: shakeBust 0.4s ease-in-out;
+}
+
+.shake-steal {
+  animation: shakeBust 0.35s ease-in-out;
+}
+
+.dealing-anim .drawn-card-wrapper {
+  animation: dealCardPop 0.38s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.discard-shake {
+  animation: discardReceivePulse 0.65s ease-in-out;
+}
+
+.game-table-card.table-bust-alert {
+  border-color: #FF9D8E;
+  box-shadow: 0 6px 26px rgba(217, 72, 52, 0.14);
+}
+
+.turn-indicator-pill.turn-pill-bust {
+  background-color: var(--color-coral-light);
+  border-color: #FFC0B6;
+  animation: shakeBust 0.45s ease-in-out;
+}
+
+.turn-indicator-pill.turn-pill-bust .turn-label,
+.turn-indicator-pill.turn-pill-bust .turn-player-name {
+  color: #B42318;
+}
+
+/* Escaparate visual de la carta repetida que ocasionó la pérdida */
+.bust-card-showcase {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.75rem;
+  height: 132px;
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(180deg, #FFF5F3 0%, #FFEAE7 100%);
+  border: 2px solid #FFAFA3;
+  box-shadow: 0 6px 20px rgba(217, 72, 52, 0.15);
+  transition: all var(--transition-fast);
+}
+
+.bust-info-side {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.3rem;
+  text-align: left;
+  max-width: 260px;
+}
+
+.bust-card-showcase.bust-showcase-reveal {
+  animation: bustCardImpact 0.75s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.bust-card-showcase.bust-showcase-settled {
+  opacity: 0.94;
+}
+
+.bust-alert-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  background-color: #D92D20;
+  color: #FFFFFF;
+  font-family: var(--font-heading);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  padding: 2px 8px;
+  border-radius: var(--radius-pill);
+  box-shadow: 0 2px 6px rgba(217, 45, 32, 0.35);
+}
+
+.bust-card-frame {
+  position: relative;
+  border-radius: var(--radius-card);
+  flex-shrink: 0;
+}
+
+.bust-showcase-reveal .bust-card-frame .pelusa-card {
+  animation: bustDangerPulse 1.1s infinite ease-in-out;
+}
+
+.bust-stamp-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-12deg);
+  background-color: rgba(217, 45, 32, 0.92);
+  color: #FFFFFF;
+  font-family: var(--font-display);
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  padding: 3px 8px;
+  border: 2px solid #FFFFFF;
+  border-radius: var(--radius-sm);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.32);
+  pointer-events: none;
+  white-space: nowrap;
+  z-index: 6;
+  animation: bustStampSlam 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.bust-details-caption {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.2rem;
+  font-size: 0.76rem;
+  color: #912018;
+  line-height: 1.25;
+}
+
+.bust-player-text strong {
+  font-weight: 800;
+}
+
+.bust-lost-cards-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  flex-wrap: wrap;
+}
+
+.bust-lost-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #B42318;
+}
+
+.bust-lost-pills {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+.bust-mini-card-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 5px;
+  font-family: var(--font-heading);
+  font-size: 0.7rem;
+  font-weight: 800;
+  border-radius: 6px;
+  background-color: #FFFFFF;
+  color: var(--color-text);
+  border: 1.5px solid var(--color-border-card);
+}
+
+.bust-mini-card-pill.is-repeated-pill {
+  background-color: #D92D20;
+  color: #FFFFFF;
+  border-color: #171717;
+  transform: scale(1.08);
+}
+
+/* Animación en el tapete del jugador que pierde por repetir carta */
+.player-mat-card.busting-mat {
+  border-color: #D92D20;
+  background-color: #FFFBFB;
+  box-shadow: 0 6px 22px rgba(217, 45, 32, 0.18);
+  animation: shakeBust 0.45s ease-in-out;
+}
+
+.bust-turn-tag {
+  background-color: var(--color-coral-light);
+  color: #B42318;
+  border: 1px solid #FFC0B6;
+  font-family: var(--font-heading);
+  font-size: 0.7rem;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: var(--radius-pill);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.bust-tag-icon {
+  color: #D92D20;
+}
+
+.mat-risk-label.mat-risk-label-bust {
+  color: #B42318;
+}
+
+.mat-risk-label.mat-risk-label-bust .risk-icon {
+  color: #D92D20;
+}
+
+.cards-in-front-zone.zone-busting {
+  background-color: #FFF2F0;
+  border-color: #FFAFA3;
+}
+
+.card-bust-repeated-wrapper .pelusa-card {
+  animation: bustDangerPulse 0.9s infinite ease-in-out;
+}
+
+.card-bust-fading-wrapper {
+  opacity: 0.75;
+}
+
+.repeated-match-pill {
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 8;
+  background-color: #D92D20;
+  color: #FFFFFF;
+  font-family: var(--font-heading);
+  font-size: 0.66rem;
+  font-weight: 800;
+  padding: 2px 7px;
+  border-radius: var(--radius-pill);
+  border: 1.5px solid #FFFFFF;
+  box-shadow: 0 2px 5px rgba(217, 45, 32, 0.3);
+  white-space: nowrap;
+}
+
+/* ==========================================================================
+   DISEÑO RESPONSIVO (TABLETS Y MÓVILES)
+   ========================================================================== */
+
+@media (max-width: 960px) {
+  .game-table-card {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 1.25rem;
+  }
+
+  .deck-zone, .discard-zone {
+    width: 100%;
+  }
+
+  .app-header {
+    padding: 0.65rem 1rem;
+    grid-template-columns: auto 1fr auto;
+    gap: 0.75rem;
+  }
+
+  .brand-subtitle-badge {
+    display: none;
+  }
+
+  .pelusas-logo-img {
+    height: 48px;
+  }
+}
+
+@media (max-width: 640px) {
+  .app-header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    padding: 0.75rem 1rem;
+  }
+
+  .header-actions {
+    width: 100%;
+    justify-content: center;
+    gap: 0.45rem;
+  }
+
+  .btn-header-action {
+    font-size: 0.78rem;
+    padding: 0.4rem 0.65rem;
+  }
+
+  .players-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .mat-body-content {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .cards-in-front-zone {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    flex-wrap: nowrap;
+  }
+
+  .cards-fan-layout {
+    flex-wrap: nowrap;
+  }
+
+  .turn-actions-toolbar {
+    width: 100%;
+  }
+
+  .btn-draw-action,
+  .btn-stop-action {
+    flex: 1;
+    padding: 0.65rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .welcome-presets-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .welcome-players-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .welcome-modal-header,
+  .welcome-modal-scroll-area,
+  .welcome-modal-footer {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .header-dropdown-menu {
+    width: 300px;
+    right: -40px;
+  }
+}
+
+/* Ocultar visualmente pero accesible para lectores de pantalla y pruebas automatizadas */
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border-width: 0 !important;
+}
+
+/* ==========================================================================
+   MENÚ PRINCIPAL ANIMADO ESTILO RUBBER HOSE (1930s Cartoon Title Screen)
+   ========================================================================== */
+
+.main-menu-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 150;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--color-bg);
+  overflow: hidden;
+  box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.85), inset 0 0 32px rgba(0, 0, 0, 0.95);
+  user-select: none;
+  animation: fadeInMenu 0.22s ease-out;
+}
+
+@keyframes fadeInMenu {
+  from {
+    opacity: 0;
+    transform: scale(0.99);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* 1. Capas Cinematográficas Vintage (Película de Celuloide 1930s) */
+.vintage-film-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 55%,
+    rgba(32, 24, 16, 0.35) 82%,
+    rgba(14, 10, 6, 0.75) 100%
+  );
+}
+
+.vintage-flicker-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
+  background: rgba(254, 245, 225, 0.08);
+  mix-blend-mode: overlay;
+  animation: film-projector-flicker 0.28s infinite alternate ease-in-out;
+}
+
+.vintage-dust-lines {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 4;
+  opacity: 0.3;
+  background-image: 
+    repeating-linear-gradient(90deg, transparent, transparent 180px, rgba(40, 30, 20, 0.08) 181px, transparent 182px),
+    repeating-linear-gradient(90deg, transparent, transparent 340px, rgba(40, 30, 20, 0.05) 341px, transparent 342px);
+  animation: film-scratches-drift 0.5s infinite steps(4);
+}
+
+@keyframes film-projector-flicker {
+  0% {
+    opacity: 0.04;
+    filter: brightness(0.98);
+  }
+  30% {
+    opacity: 0.12;
+    filter: brightness(1.03);
+  }
+  60% {
+    opacity: 0.06;
+    filter: brightness(0.99);
+  }
+  100% {
+    opacity: 0.14;
+    filter: brightness(1.02);
+  }
+}
+
+@keyframes film-scratches-drift {
+  0% {
+    transform: translateX(0);
+    opacity: 0.2;
+  }
+  25% {
+    transform: translateX(-4px);
+    opacity: 0.35;
+  }
+  50% {
+    transform: translateX(5px);
+    opacity: 0.25;
+  }
+  75% {
+    transform: translateX(-2px);
+    opacity: 0.4;
+  }
+  100% {
+    transform: translateX(3px);
+    opacity: 0.22;
+  }
+}
+
+/* 2. Barra Superior del Menú Principal */
+.main-menu-top-bar {
+  width: 100%;
+  max-width: 1280px;
+  padding: 0.75rem 1.75rem 0.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 10;
+  position: relative;
+}
+
+.rubber-badge-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background-color: #F1E5CD;
+  color: var(--color-text);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  padding: 0.3rem 0.85rem;
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 700;
+  box-shadow: 0 2px 0 var(--color-border);
+  letter-spacing: 0.02em;
+}
+
+.rubber-badge-tag .tag-icon {
+  color: #D97706;
+}
+
+.menu-top-right {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.btn-menu-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background-color: #FAF3E6;
+  color: var(--color-text);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  padding: 0.35rem 0.95rem;
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 2px 0 var(--color-border);
+  transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.15s ease;
+}
+
+.btn-menu-pill:hover {
+  background-color: #F1E5CD;
+  transform: translateY(-2px) scale(1.04);
+}
+
+.btn-menu-pill:active {
+  transform: translateY(1px) scale(0.97);
+}
+
+/* 3. Escenario Central del Menú (Ilustración y Botón Play) */
+.main-menu-stage {
+  flex: 1;
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  padding: 0 1rem;
+  position: relative;
+}
+
+.main-menu-artwork-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  animation: rubber-artwork-sway 3.2s infinite ease-in-out;
+  transform-origin: center bottom;
+}
+
+.main-menu-artwork-img {
+  max-height: min(60vh, 460px);
+  width: auto;
+  max-width: min(92vw, 820px);
+  object-fit: contain;
+  display: block;
+  border-radius: 18px;
+  border: 3.5px solid var(--color-border);
+  box-shadow: 0 10px 0 var(--color-border), 0 20px 40px rgba(0, 0, 0, 0.45);
+  background-color: var(--color-surface);
+  pointer-events: none;
+}
+
+@keyframes rubber-artwork-sway {
+  0%, 100% {
+    transform: scale(1) translateY(0) rotate(0deg);
+  }
+  35% {
+    transform: scale(1.015, 0.99) translateY(-4px) rotate(0.4deg);
+  }
+  70% {
+    transform: scale(0.995, 1.012) translateY(-2px) rotate(-0.35deg);
+  }
+}
+
+/* 4. Zona Inferior del Botón PLAY (Abajo de todo, sin sobreponerse al logo) */
+.main-menu-bottom-zone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.35rem;
+  gap: 0.65rem;
+  z-index: 20;
+}
+
+.play-button-trigger {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: inline-block;
+  outline: none;
+  transition: filter 0.2s ease;
+}
+
+.play-button-trigger:focus-visible {
+  outline: 3px dashed #171717;
+  outline-offset: 6px;
+  border-radius: var(--radius-pill);
+}
+
+.play-button-img {
+  height: clamp(80px, 15vh, 120px);
+  width: auto;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.42));
+  animation: play-btn-rubber-bounce 2.2s infinite ease-in-out;
+  transform-origin: center center;
+  transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.22s ease;
+}
+
+@keyframes play-btn-rubber-bounce {
+  0%, 100% {
+    transform: scale(1, 1) translateY(0) rotate(0deg);
+  }
+  25% {
+    transform: scale(1.045, 0.955) translateY(3px) rotate(-1deg);
+  }
+  50% {
+    transform: scale(0.965, 1.035) translateY(-8px) rotate(1deg);
+  }
+  75% {
+    transform: scale(1.025, 0.975) translateY(1px) rotate(-0.5deg);
+  }
+}
+
+.play-button-trigger:hover .play-button-img {
+  transform: scale(1.12) translateY(-6px) rotate(-2deg);
+  filter: drop-shadow(0 14px 28px rgba(210, 45, 20, 0.55)) drop-shadow(0 0 14px rgba(255, 215, 0, 0.7));
+}
+
+.play-button-trigger:active .play-button-img {
+  transform: scale(0.91) translateY(6px) rotate(1deg);
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
+}
+
+.btn-resume-game {
+  background-color: #2F6142;
+  color: #FFFFFF;
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  padding: 0.4rem 1.4rem;
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 3px 0 var(--color-border);
+  transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.15s ease;
+}
+
+.btn-resume-game:hover {
+  background-color: #264e35;
+  transform: translateY(-2px) scale(1.03);
+}
+
+.btn-resume-game:active {
+  transform: translateY(1px) scale(0.98);
+}
+
+/* 5. Pie de Crédito y Frase Rubber Hose */
+.main-menu-footer {
+  width: 100%;
+  text-align: center;
+  padding: 0.25rem 1rem 0.65rem;
+  z-index: 10;
+}
+
+.footer-credits {
+  font-family: var(--font-display);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #FAF4E8;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+  letter-spacing: 0.04em;
+}
+
+@media (max-height: 680px) {
+  .main-menu-artwork-img {
+    max-height: 52vh;
+  }
+  .play-button-img {
+    height: clamp(65px, 13vh, 90px);
+  }
+  .main-menu-top-bar {
+    padding-top: 0.35rem;
+  }
+  .main-menu-footer {
+    padding-bottom: 0.25rem;
+  }
+}
+
