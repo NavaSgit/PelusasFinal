@@ -1,0 +1,236 @@
+{
+  "_type": "export",
+  "__export_format": 4,
+  "__export_date": "2026-11-03T17:00:00.000Z",
+  "__export_source": "insomnia.desktop.app:v8.0.0",
+  "resources": [
+    {
+      "_id": "wrk_pelusas",
+      "parentId": null,
+      "modified": 1700000000000,
+      "created": 1700000000000,
+      "name": "Pelusas API",
+      "description": "Colección completa de endpoints para el juego Pelusas",
+      "scope": "collection",
+      "_type": "workspace"
+    },
+    {
+      "_id": "env_base",
+      "parentId": "wrk_pelusas",
+      "modified": 1700000000000,
+      "created": 1700000000000,
+      "name": "Base Environment",
+      "data": {
+        "base_url": "http://localhost:8080",
+        "game_id": "REEMPLAZAR_CON_TU_GAME_ID"
+      },
+      "dataPropertyOrder": {
+        "&": ["base_url", "game_id"]
+      },
+      "color": null,
+      "isPrivate": false,
+      "metaSortKey": 1700000000000,
+      "_type": "environment"
+    },
+    {
+      "_id": "fld_partida",
+      "parentId": "wrk_pelusas",
+      "modified": 1700000000000,
+      "created": 1700000000000,
+      "name": "1. Creación y Estado",
+      "description": "",
+      "environment": {},
+      "metaSortKey": 100,
+      "_type": "request_group"
+    },
+    {
+      "_id": "req_crear_partida",
+      "parentId": "fld_partida",
+      "modified": 1700000000000,
+      "created": 1700000000000,
+      "url": "{{ _.base_url }}/api/games",
+      "name": "1. Crear Partida (Normal)",
+      "description": "Crea una nueva partida con jugadores y mazo oficial barajado.",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"playerNames\": [\"Fabian\", \"Laura\", \"Carlos\"]\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "metaSortKey": 101,
+      "_type": "request"
+    },
+    {
+      "_id": "req_crear_rigged",
+      "parentId": "fld_partida",
+      "modified": 1700000000000,
+      "created": 1700000000000,
+      "url": "{{ _.base_url }}/api/games",
+      "name": "1.1 Crear Partida (Mazo Controlado / Tests)",
+      "description": "Crea una partida con orden de cartas prefijado para probar escenarios específicos (ej. busto).",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"playerNames\": [\"Fabian\", \"Laura\"],\n  \"riggedDeckValues\": [4, 5, 4, 5, 8, 9]\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "metaSortKey": 102,
+      "_type": "request"
+    },
+    {
+      "_id": "req_estado_partida",
+      "parentId": "fld_partida",
+      "modified": 1700000000000,
+      "created": 1700000000000,
+      "url": "{{ _.base_url }}/api/games/{{ _.game_id }}",
+      "name": "2. Consultar Estado de la Partida",
+      "description": "Obtiene el estado completo de la partida activa.",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "metaSortKey": 103,
+      "_type": "request"
+    },
+    {
+      "_id": "req_jugadores",
+      "parentId": "fld_partida",
+      "modified": 1700000000000,
+      "created": 1700000000000,
+      "url": "{{ _.base_url }}/api/games/{{ _.game_id }}/players",
+      "name": "3. Consultar Jugadores",
+      "description": "Lista los jugadores de la partida actual.",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "metaSortKey": 104,
+      "_type": "request"
+    },
+    {
+      "_id": "fld_acciones",
+      "parentId": "wrk_pelusas",
+      "modified": 1700000000000,
+      "created": 1700000000000,
+      "name": "2. Acciones del Turno",
+      "description": "",
+      "environment": {},
+      "metaSortKey": 200,
+      "_type": "request_group"
+    },
+    {
+      "_id": "req_bank",
+      "parentId": "fld_acciones",
+      "modified": 1700000000000,
+      "created": 1700000000000,
+      "url": "{{ _.base_url }}/api/games/{{ _.game_id }}/bank",
+      "name": "4. Asegurar Pelusas (Bank)",
+      "description": "Paso 1 del turno: asegura las cartas acumuladas de rondas anteriores en el montón protegido.",
+      "method": "POST",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "metaSortKey": 201,
+      "_type": "request"
+    },
+    {
+      "_id": "req_draw",
+      "parentId": "fld_acciones",
+      "modified": 1700000000000,
+      "created": 1700000000000,
+      "url": "{{ _.base_url }}/api/games/{{ _.game_id }}/draw",
+      "name": "5. Robar Carta (Draw)",
+      "description": "Paso 2 y 3 del turno: saca carta del mazo, ejecuta robos a rivales y chequea busto.",
+      "method": "POST",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "metaSortKey": 202,
+      "_type": "request"
+    },
+    {
+      "_id": "req_stop",
+      "parentId": "fld_acciones",
+      "modified": 1700000000000,
+      "created": 1700000000000,
+      "url": "{{ _.base_url }}/api/games/{{ _.game_id }}/stop",
+      "name": "6. Plantarse (Stop / Fin Turno)",
+      "description": "Finaliza voluntariamente el turno dejando las cartas en riesgo para la próxima ronda.",
+      "method": "POST",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "metaSortKey": 203,
+      "_type": "request"
+    },
+    {
+      "_id": "fld_resultados_historial",
+      "parentId": "wrk_pelusas",
+      "modified": 1700000000000,
+      "created": 1700000000000,
+      "name": "3. Resultados e Historial",
+      "description": "",
+      "environment": {},
+      "metaSortKey": 300,
+      "_type": "request_group"
+    },
+    {
+      "_id": "req_resultado",
+      "parentId": "fld_resultados_historial",
+      "modified": 1700000000000,
+      "created": 1700000000000,
+      "url": "{{ _.base_url }}/api/games/{{ _.game_id }}/result",
+      "name": "7. Consultar Resultado de Partida",
+      "description": "Obtiene el resultado actual o final de la partida indicada.",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "metaSortKey": 301,
+      "_type": "request"
+    },
+    {
+      "_id": "req_historial",
+      "parentId": "fld_resultados_historial",
+      "modified": 1700000000000,
+      "created": 1700000000000,
+      "url": "{{ _.base_url }}/api/history",
+      "name": "8. Consultar Histórico de Partidas",
+      "description": "Obtiene todas las partidas terminadas y persistidas en base de datos.",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "metaSortKey": 302,
+      "_type": "request"
+    },
+    {
+      "_id": "req_historial_detalle",
+      "parentId": "fld_resultados_historial",
+      "modified": 1700000000000,
+      "created": 1700000000000,
+      "url": "{{ _.base_url }}/api/history/{{ _.game_id }}",
+      "name": "9. Detalle de Partida en Histórico",
+      "description": "Consulta el detalle de una partida específica registrada en el histórico.",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "metaSortKey": 303,
+      "_type": "request"
+    }
+  ]
+}
+
